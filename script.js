@@ -7,6 +7,7 @@ $(function () {
   var calendar = $("#calendar");
 
   setTimeBlockColors();
+  setSavedContent();
 
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
@@ -20,6 +21,7 @@ $(function () {
     var savedContent = $(event.target).parent().children("textarea").val();
     localStorage.setItem(savedIndex, savedContent);
   });
+
   // TODO: Add code to apply the past, present, or future class to each time
   // block by comparing the id to the current hour. HINTS: How can the id
   // attribute of each time-block be used to conditionally add or remove the
@@ -45,5 +47,12 @@ $(function () {
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
   //
+  function setSavedContent() {
+    for (i = 0; i < timeBlocks.length; i++) {
+      timeBlocks.eq(i).children("textarea").val(localStorage.getItem(timeBlocks.eq(i).attr("id") || ""));
+    }
+  }
+
   // TODO: Add code to display the current date in the header of the page.
+  
 });
