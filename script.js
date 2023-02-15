@@ -15,9 +15,10 @@ $(function () {
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
   //
-  calendar.on("click", "button", function () {
-    console.log("clicked a button");
-    
+  calendar.on("click", "button", function (event) {
+    var savedIndex = $(event.target).parent().attr("id");
+    var savedContent = $(event.target).parent().children("textarea").val();
+    localStorage.setItem(savedIndex, savedContent);
   });
   // TODO: Add code to apply the past, present, or future class to each time
   // block by comparing the id to the current hour. HINTS: How can the id
